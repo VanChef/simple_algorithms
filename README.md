@@ -1,5 +1,7 @@
 # simple_algorithms
+
 一些简单的算法题，手工打造，仅做记录
+
 some simple algorithms, just to record what I have practiced
 
 如果你不能飞，那就跑；
