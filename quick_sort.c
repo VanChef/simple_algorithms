@@ -36,7 +36,7 @@ void quick_sort(int *in, int num)
         }
     }
  
-    swap(in, 0, l - 1);
+    swap(in, 0, l - 1);//此时l-1是最后一个小于in[0]的数
 
     quick_sort(in, l - 1);
     quick_sort(in + l, num - l);
