@@ -1,6 +1,6 @@
 # simple_algorithms
 
-一些简单的算法题，手工打造，仅做记录
+一些简单的算法题，手工打造，仅记录下做过的练习
 
 some simple algorithms, just to record what I have practiced
 
