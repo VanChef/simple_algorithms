@@ -32,10 +32,7 @@ void quick_sort(int *in, int num)
             swap(in, l, n - 1);
             n--;//遍历数减一
         } else {
-            l ++;
-        }
-        if (l >= n) {
-            break;
+            l ++;//已遍历数加一
         }
     }
  
