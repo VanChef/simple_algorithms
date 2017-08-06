@@ -28,9 +28,9 @@ void quick_sort(int *in, int num)
 
     for (l = 1; l < n;)//遍历in中所有数据
     {
-        if (*(in + l) > in[0]) {
+        if (*(in + l) > in[0]) { //把大于in[0]的数换到数据最后
             swap(in, l, n - 1);
-            n--;
+            n--;//遍历数减一
         } else {
             l ++;
         }
