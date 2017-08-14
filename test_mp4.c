@@ -44,11 +44,18 @@ int check_box_type_has_child(char *type)
         (type[2] == 'a') &&
         (type[3] == 'f'))
         return 1;
+    else if
+        ((type[0] == 'm') &&
+        (type[1] == 'o') &&
+        (type[2] == 'o') &&
+        (type[3] == 'v'))
+        return 1;
     else
         return 0;
 }
 
 static int box_depth = 0;
+static char buf[1024];
 
 int read_mov_box(FILE *f)
 {
@@ -72,10 +79,66 @@ int read_mov_box(FILE *f)
         box_depth ++;
         printf("+++");
         read_mov_box(f);
+        box_depth --;
     }
     else
     {
-        fseek(f, size - 8, SEEK_CUR);//minus type&size
+        if ((type[0] == 'm') && (type[1] == 'v') && (type[2] == 'h') && (type[3] == 'd')) {
+            //read full box
+            char version;
+            fread(&version, sizeof(char), 1, f);        printf("version %d\n", (int)version);
+            fread(buf, sizeof(char), 3, f);             printf("flag %d, %d, %d\n", buf[0], buf[1], buf[2]);
+
+            if (version==1) {
+                fread(buf, sizeof(char), 8, f);
+                printf("create time %d,%d,%d,%d,%d,%d,%d,%d\n", buf[0],buf[1],buf[2],buf[3],buf[4],buf[5],buf[6],buf[7]);
+
+                fread(buf, sizeof(char), 8, f);
+                printf("modification time %d,%d,%d,%d,%d,%d,%d,%d\n", buf[0],buf[1],buf[2],buf[3],buf[4],buf[5],buf[6],buf[7]);
+
+                fread(buf, sizeof(char), 4, f);
+                printf("time scale %d,%d,%d,%d\n", buf[0],buf[1],buf[2],buf[3]);
+
+                fread(buf, sizeof(char), 8, f);
+                printf("duration %d,%d,%d,%d,%d,%d,%d,%d\n", buf[0],buf[1],buf[2],buf[3],buf[4],buf[5],buf[6],buf[7]);
+            } else {
+                fread(buf, sizeof(char), 4, f);
+                printf("create time %d,%d,%d,%d\n", buf[0],buf[1],buf[2],buf[3]);
+
+                fread(buf, sizeof(char), 4, f);
+                printf("modification time %d,%d,%d,%d\n", buf[0],buf[1],buf[2],buf[3]);
+
+                fread(buf, sizeof(char), 4, f);
+                printf("time scale %x,%x,%x,%x\n", buf[0],buf[1],buf[2],buf[3]);
+
+                fread(buf, sizeof(char), 4, f);
+                printf("duration %d,%d,%d,%d\n", buf[0],buf[1],buf[2],buf[3]);
+            }
+
+            fread(buf, sizeof(char), 4, f);
+            printf("rate %d,%d,%d,%d\n", buf[0],buf[1],buf[2],buf[3]);
+
+            fread(buf, sizeof(char), 2, f);
+            printf("volume %d,%d,%d,%d\n", buf[0],buf[1],buf[2],buf[3]);
+
+            fread(buf, sizeof(char), 10, f);
+
+            for (int i = 0; i < 9; i++) {
+                fread(buf, sizeof(char), 4, f);
+                printf("matrix[%d] %d,%d,%d,%d\n", i, buf[0],buf[1],buf[2],buf[3]);
+            }
+
+            for (int i = 0; i < 6; i++) {
+                fread(buf, sizeof(char), 4, f);
+                printf("pre def[%d] %d,%d,%d,%d\n", i, buf[0],buf[1],buf[2],buf[3]);
+            }
+
+            fread(buf, sizeof(char), 4, f);
+            printf("next track id %d,%d,%d,%d\n", buf[0],buf[1],buf[2],buf[3]);
+        }
+        else {
+            fseek(f, size - 8, SEEK_CUR);//minus type&size
+        }
         return 0;
     }
 }
@@ -91,24 +154,15 @@ int main (int argc, char *argv[])
         printf("file open failed!\n");
     }
 
-/*
-    while (fread(&size_tmp, sizeof(char), 4, f))
-    {
-        fread(&type, sizeof(char), 4, f);
 
-        size = 0;
-        size = (size_tmp&0xFF)<<24 | (size_tmp&0xFF00)<<8 | (size_tmp&0xFF0000)>>8 | (size_tmp&0xFF000000)>>24;
-
-        fseek(f, size - 8, SEEK_CUR);//minus type&size
-
-        printf("type %c%c%c%c\tsize %d\n", type&0xFF, (type&0xFF00)>>8, (type&0xFF0000)>>16, (type&0xFF000000)>>24, size);
-    }
-*/
     while (1)
     {
         if (read_mov_box(f) < 0)
             break;
     }
+
+    if (f)
+        fclose(f);
 }
 
 
