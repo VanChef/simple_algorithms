@@ -22,6 +22,6 @@ but whatever you do, you have to keep moving forward. --Martin Luther King Jr.
 
 普通的老码农，自勉吧
 
-An Very ordinary old code farmer，encourage myself
+An Very ordinary old coding farmer，encourage myself
 
 
