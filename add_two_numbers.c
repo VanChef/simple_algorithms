@@ -49,14 +49,14 @@ struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2) {
     }
 
     sum = number1 + number2;
-   
-    printf("number1 %d, number2 %d", number1, number2);
+    printf("number1 %d, number2 %d, sum %d\n", number1, number2, sum);
 
     while(1) {
         result->val = sum % 10;
         if (sum / 10) {
             result = result->next = malloc(sizeof(struct ListNode));
             memset(result, 0, sizeof(struct ListNode));
+            sum /= 10;
         } else
             break;
     }
@@ -89,6 +89,7 @@ int main()
         printf("%d, ", result->val);
         result = result->next;
     }
+    printf("\n");
 
     return 0L;
 }
