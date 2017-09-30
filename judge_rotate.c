@@ -6,6 +6,8 @@
  *
  * 例如：给定字符串abcdefg, 则bcdefga, cdefgab都是其旋转串
  *
+ * 简单的搜索可以解决该问题，如下代码所示，但如果要最优解，又要用到KMP算法，见kmp.c
+ *
  */
 
 #include <stdio.h>
