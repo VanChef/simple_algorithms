@@ -16,7 +16,7 @@ int binary_search(int *in, int size, int target)
     left = 0;
     right = size - 1;
 
-    while(left < right) {
+    while(left <= right) {
         mid = (right + left) >> 1;
 
         printf("left %d, mid %d, right %d\n", left, mid, right);
