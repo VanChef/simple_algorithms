@@ -40,13 +40,15 @@ vector<int> two_sum(vector<int> &in, int target)
 
 int main()
 {
-    vector<int> test;
     vector<int> result;
 
-    test.push_back(2);
-    test.push_back(7);
-    test.push_back(11);
-    test.push_back(15);
+    int n[] = {2, 7, 11, 15} ;
+    vector<int> test(n, n + 4) ;              //将数组n的前5个元素作为向量a的初值
+
+    for (auto i : test) {
+        cout<<i<<endl;
+    }
+
 
     result = two_sum(test, 9);
 
