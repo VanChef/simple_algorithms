@@ -24,10 +24,20 @@ void find_missing(int* in, int size)
 {
     for(int i = 0; i < size; i++)
     {
-        if (in[i] != i) {
-            if (in[i] < size)
-                swap(in[i], in[in[i]]);
+        while (in[i] != i) {
+            if (in[i] >= size || in[i] < 0)
+                break;
+            cout<<"i "<<i<<" in[i]"<<in[i]<<endl;
+            int tmp = in[i];
+            in[i] = in[tmp];
+            in[tmp] = tmp;
         }
+    }
+
+    for(int i = 0; i < size; i++)
+    {
+        if (in[i] != i)
+            cout<<"missing "<<i<<endl;
     }
 
 }
@@ -48,6 +58,8 @@ int main()
 
     for (int i = 0; i < 98; i ++)
         cout<<"test["<<i<<"]"<<"="<<test[i]<<endl;
+
+    find_missing(test, 98);
 
     return 0;
 }
