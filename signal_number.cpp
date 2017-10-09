@@ -32,12 +32,31 @@ int singleNumber(vector<int>& nums)
     return one;
 }
 
+//这个解法更容易理解一些
+int singleNumber2(vector<int>& nums)
+{
+    const int W = sizeof(int) * 8;
+    int count[W];//每个count[i]表示二进制一位
+    memset(count, 0, W * sizeof(int));
+    for (int i = 0; i < nums.size(); i++) {
+        for (int j = 0; j < W; j++) {
+            count[j] += (nums[i] >> j) & 1;
+            count[j] %= 3;
+        }
+    }
+    int result = 0;
+    for (int i = 0; i < W; i++) {
+        result += (count[i] << i);
+    }
+    return result;
+}
+
 int main()
 {
     int test[] = {10 ,5,4,10,5,4,10,5,4,9};
     vector<int> t(test, test + 10);
 
-    int result = singleNumber(t);
+    int result = singleNumber2(t);
 
     cout<<"result "<<result<<endl;
 
