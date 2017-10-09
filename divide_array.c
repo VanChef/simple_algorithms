@@ -9,17 +9,12 @@
 #include <stdio.h>
 
 
-void avg_divide_array(int *in, int size) {
+void avg_divide_array(int *in, int size, int target) {
 
-    int sum = 0;
-    int i;
-
-    for (i = 0; i < sum; i++) {
-        sum += in[i];
+    int 
+    for (int i = 0; i < size; i ++) {
+        
     }
-
-    sum /= 2;
-
 
 }
 
@@ -29,7 +24,14 @@ int main()
 
     int input[] = {10, 5, 4, 3, 2, 9, 11, 12};
 
+    int sum = 0;
+    int i;
 
+    for (i = 0; i < sum; i++) {
+        sum += in[i];
+    }
+
+    sum /= 2;
 
 
 
