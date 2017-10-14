@@ -11,16 +11,16 @@ void permutation(int a[],int index,int size)
 {
     if(index==size)
     {
-        for(int i=0;i<size;i++)
+        for(int i = 0; i < size; i++)
             printf("%d ",a[i]);
         printf("\n");
     }
     else
     {
-        for(int j=index;j<size;j++)
+        for(int j = index; j < size; j++)
         {
             swap(&a[j],&a[index]);
-            permutation(a,index+1,size);//此处用到递归思想
+            permutation(a, index + 1, size);//此处用到递归思想
             swap(&a[j],&a[index]);
         }
     }
