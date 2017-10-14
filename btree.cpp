@@ -190,16 +190,16 @@ void PostOrder2(Tree t)    //
         {
             temp = mystack.top();       //栈顶元素弹出
             mystack.pop();
-            if (temp->isOut==true)     //表示是第一次出现在栈顶，并将标志位赋值为不是第一次出现
+            if (temp->isOut==true)      //表示是第一次出现在栈顶，并将标志位赋值为不是第一次出现
             {
                 temp->isOut = false;    //再压回栈，并访问其右子树
                 mystack.push(temp);
-                t = temp->rchild;
+                t = temp->rchild;       //继续访问当前节点的右子树
             }
             else                        //第二次出现在栈顶
             {
-                cout<<temp->data<<endl;
-                t = NULL;
+                cout<<temp->data<<endl; //表示其左子树、右子树都已经访问过
+                t = NULL;               //此时将t赋值为null，继续访问栈中别的元素
             }
         }
     }
@@ -223,3 +223,4 @@ int main()
 
 
 
+                t = temp->rchild;
