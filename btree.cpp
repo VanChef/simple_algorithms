@@ -194,7 +194,7 @@ void PostOrder2(Tree t)    //
             {
                 temp->isOut = false;    //再压回栈，并访问其右子树
                 mystack.push(temp);
-                t = temp->rchild;       //继续访问当前节点的右子树
+                t = temp->rchild;
             }
             else                        //第二次出现在栈顶
             {
@@ -222,5 +222,3 @@ int main()
 }
 
 
-
-                t = temp->rchild;
