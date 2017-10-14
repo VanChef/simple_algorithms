@@ -167,11 +167,11 @@ void PostOrder(Tree t)
                         p->isOut = 1; //right child is output, so set parent isOUt to 1
                 }  
                 else  
-                    p = NULL;  
+                    p = NULL;
             }          
-        }  
-    }  
-}  
+        }
+    }
+}
 
 void PostOrder2(Tree t)    //
 {
@@ -180,7 +180,7 @@ void PostOrder2(Tree t)    //
 
     while (t!=NULL || !mystack.empty())
     {
-        while (t!=NULL)              //沿左子树一直往下搜索，直至出现没有左子树的结点 
+        while (t!=NULL)              //沿左子树一直往下搜索，依次压栈，直至出现没有左子树的结点
         {
             t->isOut = true;
             mystack.push(t);
@@ -188,22 +188,22 @@ void PostOrder2(Tree t)    //
         }
         if (!mystack.empty())
         {
-            temp = mystack.top();
+            temp = mystack.top();       //栈顶元素弹出
             mystack.pop();
-            if (temp->isOut==true)     //表示是第一次出现在栈顶 
+            if (temp->isOut==true)     //表示是第一次出现在栈顶，并将标志位赋值为不是第一次出现
             {
-                temp->isOut = false;
+                temp->isOut = false;    //再压回栈，并访问其右子树
                 mystack.push(temp);
-                t = temp->rchild;    
+                t = temp->rchild;
             }
-            else                        //第二次出现在栈顶 
+            else                        //第二次出现在栈顶
             {
                 cout<<temp->data<<endl;
                 t = NULL;
             }
         }
-    }    
-} 
+    }
+}
 
 int main()
 {
