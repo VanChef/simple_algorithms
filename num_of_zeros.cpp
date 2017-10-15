@@ -37,14 +37,14 @@ int number_of_zeros(int n)
 
     for (int i = 1; i <= n; i++) {
         j = i;
-        while ((!(j % 2)) && (j >= 2))
+        while (!(j % 2))
         {
             number_of_two++;
             j = j / 2;
         }
         j = i;
         cout<<"i "<<i<<" number_of_two "<<number_of_two<<" number_of_five "<<number_of_five<<endl;
-        while ((!(j % 5)) && (j >= 5))
+        while (!(j % 5))
         {
             number_of_five++;
             j = j / 5;
