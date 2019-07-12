@@ -22,6 +22,20 @@
  */
 #include <stdio.h>
 
+int getResultByRecursion(int n) 
+{
+    if (n < 1) {
+        return 0;
+    }
+    if (n == 1){
+        return 1;
+    }
+    if (n == 2){
+        return 2;
+    }
+    return getResultByRecursion(n-1) + getResultByRecursion(n-2);
+}
+
 int main()
 {
     int i,j,k;
@@ -39,5 +53,11 @@ int main()
     }
 
     printf("%d\n", ret);
+
+    ret = getResultByRecursion(20);
+
+    printf("%d\n", ret);
 }
+
+
 
